@@ -1,0 +1,36 @@
+import java.net.*;
+import java.io.*;
+
+public class HttpURLConnectionExample {
+    public static void main(String[] args) {
+        try {
+            // 创建 URL 对象
+            URL url = new URL("https://www.example.com");
+
+            // 打开连接
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+            // 设置请求方法
+            connection.setRequestMethod("GET");
+
+            // 获取输入流
+            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String line;
+            StringBuilder response = new StringBuilder();
+
+            // 读取响应内容
+            while ((line = reader.readLine()) != null) {
+                response.append(line);
+            }
+
+            // 关闭连接
+            connection.disconnect();
+
+            // 打印响应内容
+            System.out.println(response.toString());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}

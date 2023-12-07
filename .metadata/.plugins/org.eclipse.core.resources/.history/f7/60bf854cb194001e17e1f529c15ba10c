@@ -1,0 +1,27 @@
+import java.io.*;
+
+public class BufferedReaderWriterExample {
+    public static void main(String[] args) {
+        try {
+            // 创建 BufferedReader 和 BufferedWriter
+            BufferedReader reader = new BufferedReader(new FileReader("input.txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt"));
+
+            // 读取和写入数据
+            String line;
+            while ((line = reader.readLine()) != null) {
+                writer.write(line);
+                writer.newLine(); // 换行
+            }
+
+            // 关闭流
+            reader.close();
+            writer.close();
+
+            System.out.println("File copied line by line successfully.");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
